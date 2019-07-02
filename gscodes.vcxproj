@@ -157,7 +157,6 @@
     <ClCompile Include="IDLInterface.cpp" />
     <ClCompile Include="Messages.cpp" />
     <ClCompile Include="MWmain.cpp" />
-    <ClCompile Include="SliceWin.cpp" />
     <ClCompile Include="Std_DF.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +167,6 @@
     <ClInclude Include="IDLInterface.h" />
     <ClInclude Include="Messages.h" />
     <ClInclude Include="MWmain.h" />
-    <ClInclude Include="SliceWin.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

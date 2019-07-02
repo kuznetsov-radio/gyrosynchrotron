@@ -1,8 +1,9 @@
+#ifndef LINUX
 #include <stdarg.h>
 #include <stdio.h>
 #include <idl_export.h>
 
-void IDLmsg(char *fmt, ...)
+void IDLmsg(const char *fmt, ...)
 {
  char arr[256];
 
@@ -17,7 +18,7 @@ void IDLmsg(char *fmt, ...)
 int LOGinit=0;
 char LOGname[32];
 
-void LOGout(char *fmt, ...)
+void LOGout(const char *fmt, ...)
 {
  char arr[256];
 
@@ -54,3 +55,13 @@ void LOGout(char *fmt, ...)
  fprintf(f, "%s\n", arr);
  fclose(f);
 }
+
+#else
+
+void IDLmsg(const char *fmt, ...)
+{}
+
+void LOGout(const char *fmt, ...)
+{}
+
+#endif

@@ -9,6 +9,10 @@
 #include "Astrophys.h"
 #include "Messages.h"
 
+#ifdef LINUX
+#define CLK_TCK CLOCKS_PER_SEC
+#endif
+
 EmWave :: EmWave(double _nu, double _theta, int _sigma, double _nu_p, double _nu_B)
 {
  nu=_nu;

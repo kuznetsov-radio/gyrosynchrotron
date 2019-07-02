@@ -1,2 +1,2 @@
-void IDLmsg(char *fmt, ...);
-void LOGout(char *fmt, ...);
+void IDLmsg(const char *fmt, ...);
+void LOGout(const char *fmt, ...);

@@ -22,7 +22,12 @@ inline double min(double a, double b)
  return (a<b) ? a : b;
 }
 
+#ifndef LINUX
 #define finite _finite
+#else
+#define finite isfinite
+#endif
+
 #define dNaN (double(HUGE_VAL))
 
 void FindBesselJ(double, int, double*, double*);
