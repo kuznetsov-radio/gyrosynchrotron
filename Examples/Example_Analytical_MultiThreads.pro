@@ -1,5 +1,6 @@
 pro Example_Analytical_MultiThreads
  libname='MWTransferArr64.dll'
+ ;libname='MWTransferArr.so'
 
  Nf=100     ;number of frequencies
  NSteps=30L ;number of nodes along the line-of-sight
@@ -36,7 +37,7 @@ pro Example_Analytical_MultiThreads
  ParmLocal[28]=2     ;Q-optimization on
  ;other parameters are zero by default => array is off
  
- Parms=dblarr(34, NSteps) ;the array of input parameters - 29-element version
+ Parms=dblarr(34, NSteps) ;the array of input parameters
  for i=0, NSteps-1 do begin
   Parms[*, i] =ParmLocal     
   Parms[1, i]/=NSteps          
@@ -65,8 +66,6 @@ pro Example_Analytical_MultiThreads
 
  ;--------------------------------------------
  
- set_plot, 'win'
-  
  window, 1, title='Total intensity (analytical)'
  wset, 1
  

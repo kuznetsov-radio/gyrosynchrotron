@@ -1,5 +1,6 @@
 pro Example_Analytical_SingleThread
  libname='MWTransferArr64.dll'
+ ;libname='MWTransferArr.so'
 
  Nf=100     ;number of frequencies
  NSteps=30L ;number of nodes along the line-of-sight
@@ -61,8 +62,6 @@ pro Example_Analytical_SingleThread
  
  ;--------------------------------------------
  
- set_plot, 'win'
-  
  window, 1, title='Total intensity (analytical)'
  wset, 1
  plot, f, I_L+I_R, /xlog, /ylog, xtitle='Frequency, GHz', ytitle='Intensity, sfu'

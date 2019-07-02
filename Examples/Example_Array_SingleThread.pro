@@ -1,5 +1,6 @@
 pro Example_Array_SingleThread
  libname='MWTransferArr64.dll'
+ ;libname='MWTransferArr.so'
 
  Nf=100     ;number of frequencies
  NSteps=30L ;number of nodes along the line-of-sight
@@ -39,7 +40,7 @@ pro Example_Array_SingleThread
  ParmLocal[31]=1     ;array on
  ParmLocal[32]=2     ;full array on
  
- Parms=dblarr(34, NSteps) ;the array of input parameters - 29-element version
+ Parms=dblarr(34, NSteps) ;the array of input parameters
  for i=0, NSteps-1 do begin
   Parms[*, i] =ParmLocal     
   Parms[1, i]/=NSteps          
@@ -86,8 +87,6 @@ pro Example_Array_SingleThread
  
  ;--------------------------------------------
  
- set_plot, 'win'
-  
  window, 3, title='Total intensity (array)'
  wset, 3
  plot, f, I_L+I_R, /xlog, /ylog, xtitle='Frequency, GHz', ytitle='Intensity, sfu'
