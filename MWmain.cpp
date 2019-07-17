@@ -152,7 +152,7 @@ int FindLocalJK(double *nu, int Nnu, double *ParmIn, int InSize,
  }
  
  df[Ndf]=0;
- 
+                  
  if (!res)
  {
   double nb=0.0; //additional energetic electron density

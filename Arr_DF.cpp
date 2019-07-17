@@ -86,7 +86,7 @@ void Arr_DF :: FE(double E, double mu, double *f, double *df_dE, double *df_dmu,
   if (!f) //only g1 is needed
   {
    if (LQ_on) LQInterpolate2D(log_on ? log(E) : E, mu, NE, Nmu, E_arr, mu_arr, f_arr, log_on ? 0 : &fE, 0, &dfE_dmu, 0);
-   else S2->Interpolate(log_on ? log(E) : E, mu, log_on ? 0 : &fE, 0, &dfE_dmu, 0);
+   else S2->Interpolate(log_on ? log(E) : E, mu, log_on ? 0 : &fE, 0, &dfE_dmu, 0); 
    *g1=log_on ? dfE_dmu : dfE_dmu/fE; 
   }
   else //calculating all
@@ -227,10 +227,10 @@ Arr_DF :: Arr_DF(double *ParmIn, int InSize,
         double g1;
         for (int i=0; i<NE; i++) for (int j=0; j<Nmu; j++)
         {
-         FE(E_arr[i], mu_arr[j], 0, 0, 0, &g1, 0);
-         gmax=max(gmax, fabs(g1));
+         FE(log_on ? exp(E_arr[i]) : E_arr[i], mu_arr[j], 0, 0, 0, &g1, 0);
+         gmax=max(gmax, fabs(g1)); 
         }
-        if (gmax!=0.0) EPS_mu0=min(EPS_mu0, 1.0/gmax/30);
+        if (gmax!=0.0) EPS_mu0=min(EPS_mu0, 1.0/gmax/30); 
 	   }
 	  }
 	 }

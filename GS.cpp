@@ -331,8 +331,9 @@ class MuSolveFunction : public IntegrableFunction
 };
 
 double MuSolveFunction :: F(double mu)
-{
- return gsi->H1(mu);
+{ 
+ double h=gsi->H1(mu); 
+ return h;
 }
 
 void GSIntegrandApprox :: Find_mu0(double *mu0, double *lnQ2)
@@ -487,12 +488,12 @@ void GS_jk_approx(EmWave *w, DF *df, int Npoints, int Q_on, double *j, double *k
 
     for (gsi.mode=0; gsi.mode<=1; gsi.mode++)
     {
-     gsi.rom_count=0;
+     gsi.rom_count=0; 
      jk_loc[gsi.mode]=df->logscale[r] ? 
 	 	              ((Npoints>=1) ? trapzdLog(&gsi, df->E_x[r], df->E_x[r+1], Npoints) : 
 					                  qrombLog( &gsi, df->E_x[r], df->E_x[r+1], ERR_i, &err)) : 
 		              ((Npoints>=1) ? trapzd(   &gsi, df->E_x[r], df->E_x[r+1], Npoints) : 
-						              qromb(    &gsi, df->E_x[r], df->E_x[r+1], ERR_i, &err));
+						              qromb(    &gsi, df->E_x[r], df->E_x[r+1], ERR_i, &err)); 
     }
  
     *j+=jk_loc[0];
@@ -539,7 +540,7 @@ void GS_jk_approx_mDF(EmWave *w, DF **df, int Npoints, int Q_on, double *j, doub
   double j_loc, k_loc;
 
   GS_jk_approx(w, *df_loc, Npoints, Q_on, &j_loc, &k_loc);
-
+                  
   *j+=j_loc;
   *k+=k_loc;
 

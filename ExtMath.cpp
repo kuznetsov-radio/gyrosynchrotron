@@ -2,6 +2,7 @@
 #include <float.h>
 #include <malloc.h>
 #include "ExtMath.h"
+#include "Messages.h"
 
 void polint(double *xa, double *ya, int n, double x, double *y, double *dy)
 {
@@ -228,7 +229,7 @@ double BrentRoot(IntegrableFunction *F, double x1, double x2, double tol)
     if (2.0*p<(min1<min2 ? min1 : min2)) 
 	{
      e=d; 
-     d=p/q;
+     d=p/q; 
     } 
 	else 
 	{
@@ -244,9 +245,8 @@ double BrentRoot(IntegrableFunction *F, double x1, double x2, double tol)
    a=b; 
    fa=fb;
    if (fabs(d)>tol1) b+=d;
-   else
-   b+=SIGN(tol1, xm);
-   fb=F->F(b);
+   else b+=SIGN(tol1, xm);
+   fb=F->F(b); 
    if (!finite(fb)) return dNaN;
   }
   return dNaN; 

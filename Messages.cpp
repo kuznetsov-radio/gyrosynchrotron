@@ -1,6 +1,7 @@
-#ifndef LINUX
 #include <stdarg.h>
 #include <stdio.h>
+
+#ifndef LINUX
 #include <idl_export.h>
 
 void IDLmsg(const char *fmt, ...)
@@ -15,6 +16,13 @@ void IDLmsg(const char *fmt, ...)
  IDL_Message(IDL_M_GENERIC, IDL_MSG_INFO, arr);
 }
 
+#else
+
+void IDLmsg(const char *fmt, ...)
+{}
+
+#endif
+
 int LOGinit=0;
 char LOGname[32];
 
@@ -24,7 +32,11 @@ void LOGout(const char *fmt, ...)
 
  va_list argptr;
  va_start(argptr, fmt);
+ #ifndef LINUX
  vsprintf_s(arr, 256, fmt, argptr);
+ #else
+ vsnprintf(arr, 256, fmt, argptr);
+ #endif
  va_end(argptr);
 
  FILE *f;
@@ -55,13 +67,3 @@ void LOGout(const char *fmt, ...)
  fprintf(f, "%s\n", arr);
  fclose(f);
 }
-
-#else
-
-void IDLmsg(const char *fmt, ...)
-{}
-
-void LOGout(const char *fmt, ...)
-{}
-
-#endif
