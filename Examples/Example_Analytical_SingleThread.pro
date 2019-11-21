@@ -25,7 +25,7 @@ pro Example_Analytical_SingleThread
  ParmLocal[16]=0.02  ;logarithmic step in frequency
  ParmLocal[17]=3     ;distribution over energy (PLW is chosen)
  ParmLocal[18]=Nf    ;number of frequencies (specified above)
- ParmLocal[19]=3     ;distribution over pitch-angle (GAU is chosen)
+ ParmLocal[19]=3     ;distribution over pitch-angle (GLC is chosen)
  ParmLocal[20]=70    ;loss-cone boundary, degrees
  ParmLocal[21]=0     ;beam direction (degrees) in GAU and SGA (not used in this example)
  ParmLocal[22]=0.2   ;\Delta\mu

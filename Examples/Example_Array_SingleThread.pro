@@ -26,9 +26,9 @@ pro Example_Array_SingleThread
  ParmLocal[14]=60    ;theta - the viewing angle, degrees (will be changed later!)
  ParmLocal[15]=1e9   ;starting frequency to calculate spectrum, Hz
  ParmLocal[16]=0.02  ;logarithmic step in frequency
- ParmLocal[17]=1     ;distribution over energy (free-free only)
+ ParmLocal[17]=0     ;distribution over energy (free-free only)
  ParmLocal[18]=Nf    ;number of frequencies (specified above)
- ParmLocal[19]=3     ;distribution over pitch-angle (GAU is chosen)
+ ParmLocal[19]=3     ;distribution over pitch-angle (GLC is chosen)
  ParmLocal[20]=70    ;loss-cone boundary, degrees
  ParmLocal[21]=0     ;beam direction (degrees) in GAU and SGA (not used in this example)
  ParmLocal[22]=0.2   ;\Delta\mu
