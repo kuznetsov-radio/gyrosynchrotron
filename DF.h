@@ -1,6 +1,7 @@
 #include <malloc.h>
 
-#define FFF 1 //free-free only
+#define FFF 0 //free-free only
+#define FFF1 1 //same as free-free only
 #define THM 2 //relativistic thermal distribution
 #define PLW 3 //power-law distribution on energy
 #define DPL 4 //double power-law distribution on energy

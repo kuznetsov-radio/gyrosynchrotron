@@ -36,7 +36,7 @@ extern "C" double GET_MW(int argc, void **argv)
  if (Ndat[3]<29) //classical interface - ParmIn=fltarr(29)
  {
   IDLmsg("GET_MW error: not enough elements in the voxel parameters array.");
-  return -2;
+  return -3;
  }
 
  int res=MWTransfer(Ndat[0], Ndat[1], Ndat[2], Ndat[3], Parms, E_arr, mu_arr, f_arr, RL);
