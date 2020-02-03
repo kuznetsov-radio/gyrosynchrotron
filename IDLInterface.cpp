@@ -86,6 +86,7 @@ extern "C" double GET_MW_SLICE(int argc, void **argv)
 	D3(Parms, InSize, Nsteps, 15, 0, pix)=D3(Parms, InSize, Nsteps, 15, 0, 0);
 	D3(Parms, InSize, Nsteps, 16, 0, pix)=D3(Parms, InSize, Nsteps, 16, 0, 0);
 	D3(Parms, InSize, Nsteps, 18, 0, pix)=D3(Parms, InSize, Nsteps, 18, 0, 0);
+    if (InSize>34) D3(Parms, InSize, Nsteps, 34, 0, pix)=D3(Parms, InSize, Nsteps, 34, 0, 0);
 	for (int i=0; i<Nnu; i++) D3(RL, OutSize, Nnu, 0, i, pix)=D3(RL, OutSize, Nnu, 0, i, 0);
    }
 

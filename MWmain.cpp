@@ -247,7 +247,7 @@ int MWTransfer(int Nsteps, int NE, int Nmu, int InSize, double *Parms, double *E
 
  int Nnu=(int)D2(Parms, InSize, 18, 0);
  double *nu=(double*)malloc(sizeof(double)*Nnu);
- if (D2(Parms, InSize, 15, 0)>0)
+ if (D2r(Parms, InSize, 34, 0)==0 && D2(Parms, InSize, 15, 0)>0)
  {
   nu[0]=D2(Parms, InSize, 15, 0);
   double dnu=D2(Parms, InSize, 16, 0);

@@ -1,5 +1,6 @@
 #define D1(arr, s, i) (((i)<(s)) ? arr[i] : 0)
 #define D2(arr, s1, i1, i2) arr[(i1)+(i2)*(s1)]
+#define D2r(arr, s1, i1, i2) (((i1)<(s1)) ? arr[(i1)+(i2)*(s1)] : 0)
 #define D3(arr, s1, s2, i1, i2, i3) arr[(i1)+((i2)+(i3)*(s2))*(s1)]
 
 class IDL_DFarr : public Arr2D
