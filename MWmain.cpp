@@ -22,47 +22,46 @@ int FindLocalJK(double *nu, int *Lparms, double *Rparms, double *Parms,
  int Ndf=0;
  DF *df[10];
  
- if (!(EM_flag & 1)) //GS is on
+ //initializing the analytical distribution function:
+ int k=0;
+ int Done=0;
+ int OK, empty, kap_on;
+
+ while (!Done)
  {
-  int k=0;
-  int Done=0;
-  int OK, empty, kap_on;
-
-  while (!Done)
+  df[Ndf]=new Std_DF(Parms, k, &OK, &empty, &kap_on, &Done);
+  if (!OK) 
   {
-   df[Ndf]=new Std_DF(Parms, k, &OK, &empty, &kap_on, &Done);
-   if (!OK) 
-   {
-    IDLmsg("Invalid analytical distribution function parameters!");
-    res=1;
-   }
-
-   if (OK && !empty) 
-   {
-    Ndf++;
-    if (kap_on) kappa=Parms[i_epskappa];
-   }
-   else delete df[Ndf];
-   k++;
+   IDLmsg("Invalid analytical distribution function parameters!");
+   res=1;
   }
 
-  if (!Lparms[i_arrKeyG]) if (!Parms[i_arrKeyL])
+  if (OK && !empty) 
   {
-   df[Ndf]=new Arr_DF(Lparms, E_arr, mu_arr, f_arr, &OK, &empty);
-  
-   if (!OK)
-   {
-    IDLmsg("Invalid numerical distribution function parameters!");
-    res=2;
-   }
-
-   if (OK && !empty) Ndf++;
-   else delete df[Ndf];
+   Ndf++;
+   if (kap_on) kappa=Parms[i_epskappa];
   }
- 
-  df[Ndf]=0;
+  else delete df[Ndf];
+  k++;
  }
 
+ //initializing the array distribution function
+ if (!Lparms[i_arrKeyG]) if (!Parms[i_arrKeyL])
+ {
+  df[Ndf]=new Arr_DF(Lparms, E_arr, mu_arr, f_arr, &OK, &empty);
+  
+  if (!OK)
+  {
+   IDLmsg("Invalid numerical distribution function parameters!");
+   res=2;
+  }
+
+  if (OK && !empty) Ndf++;
+  else delete df[Ndf];
+ }
+ 
+ df[Ndf]=0;
+ 
  if (!res)
  {
   double nb=0.0; //additional energetic electron density
@@ -77,7 +76,7 @@ int FindLocalJK(double *nu, int *Lparms, double *Rparms, double *Parms,
   int Nnu=Lparms[i_Nnu];
   for (int i=0; i<Nnu; i++) jX[i]=kX[i]=jO[i]=kO[i]=0;
 
-  if (Ndf)
+  if (!(EM_flag & 1)) if (Ndf) //GS is on and nonthermal electrons are present
   {
    double nu_cr=nu_B*Rparms[i_nuCr];
    double nu_cr_WH=nu_B*Rparms[i_nuWH];
@@ -142,7 +141,7 @@ void RadiationTransfer(double nu, int Nz, double *dz, double *ne, double *B, dou
   double eX=(tau<700) ? exp(tau) : 0.0;
   double dIX=(kX[i]==0.0 || tau>700) ? 0.0 : jX[i]/kX[i]*((1.0-eX) ? 1.0-eX : -tau);
 
-  if (i>0) if ((theta[i]>(M_PI/2)) ^ (theta[i-1]>(M_PI/2)))
+  if (i>0) if (((theta[i]>(M_PI/2)) ^ (theta[i-1]>(M_PI/2))) && ne[i]>0 && ne[i-1]>0)
   {
    double a=*Lw;
    *Lw=*Rw;
