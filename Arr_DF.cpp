@@ -1,6 +1,10 @@
 #include <math.h>
 #include <float.h>
+#ifndef MACOS
 #include <malloc.h>
+#else
+#include <stdlib.h>
+#endif
 #include "IDLinterface.h"
 #include "Arr_DF.h"
 #include "Plasma.h"
