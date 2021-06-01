@@ -1,4 +1,4 @@
-#ifndef MACOS
+#ifndef OSX
 #include <malloc.h>
 #else
 #include <stdlib.h>

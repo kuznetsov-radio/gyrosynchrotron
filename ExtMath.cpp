@@ -1,6 +1,6 @@
 #include <math.h>
 #include <float.h>
-#ifndef MACOS
+#ifndef OSX
 #include <malloc.h>
 #else
 #include <stdlib.h>
