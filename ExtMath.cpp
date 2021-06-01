@@ -236,17 +236,17 @@ void Spline2D :: Interpolate(double x, double y,
 
  double f_lo=ay*f_arr[i1][j1]+by*f_arr[i1][j2]+((ay*ay*ay-ay)*f2_yy_arr[i1][j1]+(by*by*by-by)*f2_yy_arr[i1][j2])*(hy*hy)/6.0;
  double f_y_lo=(f_arr[i1][j2]-f_arr[i1][j1])/hy+((1.0-3.0*ay*ay)*f2_yy_arr[i1][j1]+(3.0*by*by-1)*f2_yy_arr[i1][j2])*hy/6.0;
- double f2_xx_lo=ay*f2_xx_arr[i1][j1]+by*f2_xx_arr[i1][j2]+((ay*ay*ay-ay)*f4_xxyy_arr[i1][j1]+(by*by*by-by)*f4_xxyy_arr[i1][j2])*(hy*hy)/6.0;
  double f2_yy_lo=ay*f2_yy_arr[i1][j1]+by*f2_yy_arr[i1][j2];
+ double f2_xx_lo=ay*f2_xx_arr[i1][j1]+by*f2_xx_arr[i1][j2]+((ay*ay*ay-ay)*f4_xxyy_arr[i1][j1]+(by*by*by-by)*f4_xxyy_arr[i1][j2])*(hy*hy)/6.0;
  double f3_xxy_lo=(f2_xx_arr[i1][j2]-f2_xx_arr[i1][j1])/hy+((1.0-3.0*ay*ay)*f4_xxyy_arr[i1][j1]+(3.0*by*by-1)*f4_xxyy_arr[i1][j2])*hy/6.0;
- double f4_xxyy_lo=ay*f2_xx_arr[i1][j1]+by*f2_xx_arr[i1][j2]+((ay*ay*ay-ay)*f4_xxyy_arr[i1][j1]+(by*by*by-by)*f4_xxyy_arr[i1][j2])*(hy*hy)/6.0;
+ double f4_xxyy_lo=ay*f4_xxyy_arr[i1][j1]+by*f4_xxyy_arr[i1][j2];
 
  double f_hi=ay*f_arr[i2][j1]+by*f_arr[i2][j2]+((ay*ay*ay-ay)*f2_yy_arr[i2][j1]+(by*by*by-by)*f2_yy_arr[i2][j2])*(hy*hy)/6.0;
  double f_y_hi=(f_arr[i2][j2]-f_arr[i2][j1])/hy+((1.0-3.0*ay*ay)*f2_yy_arr[i2][j1]+(3.0*by*by-1)*f2_yy_arr[i2][j2])*hy/6.0;
- double f2_xx_hi=ay*f2_xx_arr[i2][j1]+by*f2_xx_arr[i2][j2]+((ay*ay*ay-ay)*f4_xxyy_arr[i2][j1]+(by*by*by-by)*f4_xxyy_arr[i2][j2])*(hy*hy)/6.0;
  double f2_yy_hi=ay*f2_yy_arr[i2][j1]+by*f2_yy_arr[i2][j2];
+ double f2_xx_hi=ay*f2_xx_arr[i2][j1]+by*f2_xx_arr[i2][j2]+((ay*ay*ay-ay)*f4_xxyy_arr[i2][j1]+(by*by*by-by)*f4_xxyy_arr[i2][j2])*(hy*hy)/6.0;
  double f3_xxy_hi=(f2_xx_arr[i2][j2]-f2_xx_arr[i2][j1])/hy+((1.0-3.0*ay*ay)*f4_xxyy_arr[i2][j1]+(3.0*by*by-1)*f4_xxyy_arr[i2][j2])*hy/6.0;
- double f4_xxyy_hi=ay*f2_xx_arr[i2][j1]+by*f2_xx_arr[i2][j2]+((ay*ay*ay-ay)*f4_xxyy_arr[i2][j1]+(by*by*by-by)*f4_xxyy_arr[i2][j2])*(hy*hy)/6.0;
+ double f4_xxyy_hi=ay*f4_xxyy_arr[i2][j1]+by*f4_xxyy_arr[i2][j2];
 
  if (f) *f=ax*f_lo+bx*f_hi+((ax*ax*ax-ax)*f2_xx_lo+(bx*bx*bx-bx)*f2_xx_hi)*(hx*hx)/6.0;
  if (f_x) *f_x=(f_hi-f_lo)/hx+((1.0-3.0*ax*ax)*f2_xx_lo+(3.0*bx*bx-1)*f2_xx_hi)*hx/6.0;
