@@ -1,4 +1,4 @@
-ifeq ($(detected_OS), Windows)
+ifeq ($(OS), Windows_NT)
     target = MWTransferArr.dll
 else
     UNAME_S := $(shell uname -s)
