@@ -1,8 +1,4 @@
-#ifndef OSX
-#include <malloc.h>
-#else
 #include <stdlib.h>
-#endif
 #include <math.h>
 #include "IDLinterface.h"
 #include "Messages.h"

@@ -1,8 +1,4 @@
-#ifndef OSX
-#include <malloc.h>
-#else
 #include <stdlib.h>
-#endif
 #include <memory.h>
 #include "MWmain.h"
 #include "Plasma.h"

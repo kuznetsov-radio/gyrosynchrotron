@@ -1,10 +1,6 @@
 #include <math.h>
 #include <float.h>
-#ifndef OSX
-#include <malloc.h>
-#else
 #include <stdlib.h>
-#endif
 #include <time.h>
 #include "ExtMath.h"
 #include "Plasma.h"
