@@ -1,4 +1,4 @@
-#include <malloc.h>
+#include <stdlib.h>
 #include <memory.h>
 #include "MWmain.h"
 #include "Plasma.h"

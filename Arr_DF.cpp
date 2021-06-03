@@ -1,6 +1,6 @@
 #include <math.h>
 #include <float.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "IDLinterface.h"
 #include "Arr_DF.h"
 #include "Plasma.h"

@@ -1,6 +1,6 @@
 #include <math.h>
 #include <float.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include "ExtMath.h"
 
 void spline_init(double *x, double *y, int n, double yp1, double ypn, double *y2)
