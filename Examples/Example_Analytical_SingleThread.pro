@@ -1,4 +1,5 @@
 pro Example_Analytical_SingleThread
+ ;libname='MWTransferArr64.dll' ;name of the executable library
  libname='../Binaries/MWTransferArr.so' ;name of the executable library
 
  Nf=100     ;number of frequencies

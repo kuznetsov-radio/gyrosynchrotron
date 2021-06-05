@@ -1,7 +1,6 @@
 pro Example_Array_SingleThread
  ;libname='MWTransferArr64.dll' ;name of the executable library
- ;libname='../Binaries/MWTransferArr_MacOS.so' ;name of the executable library
- libname='../MWTransferArr.so' ;name of the executable library
+ libname='../Binaries/MWTransferArr.so' ;name of the executable library
 
  Nf=100     ;number of frequencies
  NSteps=30L ;number of nodes along the line-of-sight
