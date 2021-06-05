@@ -163,3 +163,55 @@ extern "C" double GET_MW_SLICE(int argc, void **argv)
 
  return res;
 }
+
+// Interface for Python wrapper
+#ifndef LINUX
+extern "C" __declspec(dllexport) int pyGET_MW_main(int *Lparms, double *Rparms, double *Parms,
+        double *E_arr, double *mu_arr, double *f_arr, double *RL)
+#else
+extern "C" double pyGET_MW_main(int *Lparms, double *Rparms, double *Parms,
+        double *E_arr, double *mu_arr, double *f_arr, double *RL)
+#endif
+{
+ int res=0;
+ res=MW_Transfer(Lparms, Rparms, Parms, E_arr, mu_arr, f_arr, RL);
+ return res;
+}
+
+#ifndef LINUX
+extern "C" __declspec(dllexport) int pyGET_MW(int *Lparms, double *Rparms, double *Parms,
+        double *E_arr, double *mu_arr, double *f_arr, double *RL)
+#else
+extern "C" double pyGET_MW(int *Lparms, double *Rparms, double *Parms1,
+        double *E_arr, double *mu_arr, double *f_arr, double *RL)
+#endif
+{
+ int res=0;
+ {
+  int Nz=Lparms[i_Nz];
+  double *Parms=(double*)malloc(sizeof(double)*Nz*InSize);
+  memcpy(Parms, Parms1, sizeof(double)*Nz*InSize);
+
+  for (int i=0; i<Nz; i++)
+  {
+   double *p=Parms+i*InSize;
+
+   if (p[i_T0]<1e5 && p[i_np]==0 && p[i_nH]==0)
+   {
+	double ne, nH, nHe;
+
+	FindIonizationsSolar(p[i_n0], p[i_T0], &ne, &nH, &nHe);
+
+	p[i_n0]=ne;
+	p[i_nH]=nH;
+	p[i_nHe]=nHe;
+   }
+  }
+
+  res=MW_Transfer(Lparms, Rparms, Parms, E_arr, mu_arr, f_arr, RL);
+
+  free(Parms);
+ }
+
+ return res;
+}

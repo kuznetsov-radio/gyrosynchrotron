@@ -1,5 +1,5 @@
 pro Example_Analytical_SingleThread
- libname='MWTransferArr64.dll' ;name of the executable library
+ libname='../Binaries/MWTransferArr.so' ;name of the executable library
 
  Nf=100     ;number of frequencies
  NSteps=30L ;number of nodes along the line-of-sight
@@ -13,7 +13,7 @@ pro Example_Analytical_SingleThread
  Rparms[1]=1e9  ;starting frequency to calculate spectrum, Hz
  Rparms[2]=0.02 ;logarithmic step in frequency
  Rparms[3]=12   ;f^C
- Rparms[4]=12   ;f^WH
+ Rparms[4]=12  ;f^WH
  
  L=1e10 ;total source depth, cm
  
