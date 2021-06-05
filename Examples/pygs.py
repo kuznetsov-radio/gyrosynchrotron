@@ -7,22 +7,13 @@ def single_thread_wrapper(mwfunc, Lparms, Rparms, Parms, E_arr, mu_arr, f_arr, v
     _doublep = ndpointer(dtype=ctypes.c_double, flags='C')
     mwfunc.argtypes = [_intp, _doublep, _doublep, _doublep, _doublep, _doublep, _doublep]
     mwfunc.restype = ctypes.c_int
-    # force the data types
-    Lparms = Lparms.astype('int32')
-    Rparms = Rparms.astype('double')
-    Parms = Parms.astype('double')
-    if np.isscalar(E_arr):
-        E_arr = float(E_arr)
-    else:
-        E_arr = E_arr.astype('double')
-    if np.isscalar(mu_arr):
-        mu_arr = float(mu_arr)
-    else:
-        mu_arr = mu_arr.astype('double')
-    if np.isscalar(f_arr):
-        mu_arr = float(mu_arr)
-    else:
-        f_arr = f_arr.astype('double')
+    # force the data types to what they need to be
+    Lparms = np.array(Lparms, dtype='int32')
+    Rparms = np.array(Rparms, dtype='double')
+    Parms = np.array(Parms, dtype='double')
+    E_arr = np.array(E_arr, dtype='double')
+    mu_arr = np.array(mu_arr, dtype='double')
+    f_arr = np.array(f_arr, dtype='double')
 
     # define output
     Nf = Lparms[1]
