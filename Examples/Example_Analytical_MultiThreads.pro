@@ -50,7 +50,7 @@ pro Example_Analytical_MultiThreads
  ;calculating the emission for analytical distribution (array -> off)
  RL_M=dblarr(7, Nf, Npix)
  
- res=call_external(libname, 'GET_MW_SLICE', Lparms_M, Rparms_M, Parms_M, 0, 0, 0, RL_M, /unload)
+ res=call_external(libname, 'GET_MW_SLICE', Lparms_M, Rparms_M, Parms_M, 0, 0, 0, RL_M)
  
  ;--------------------------------------------
  ;plotting the results

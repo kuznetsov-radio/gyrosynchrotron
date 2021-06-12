@@ -58,7 +58,7 @@ pro Example_Array_SingleThread
  f_arr=dblarr(N_E, N_mu, Nsteps) ;3D distribution function array - for multiple voxels
  for k=0L, Nsteps-1 do f_arr[*, *, k]=f0 ;electron distribution function is the same in all voxels
  
- ;calculating the emission for analytical distribution (array -> on)
+ ;calculating the emission for array distribution (array -> on)
  RL=dblarr(7, Nf)
  
  res=call_external(libname, 'GET_MW', Lparms, Rparms, Parms, E_arr, mu_arr, f_arr, RL)
