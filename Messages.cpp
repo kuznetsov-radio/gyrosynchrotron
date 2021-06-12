@@ -1,8 +1,10 @@
 #include <stdarg.h>
 #include <stdio.h>
 
-#ifndef LINUX
+#ifdef IDLMSG
 #include <idl_export.h>
+
+// add file "idl.lib" to the linker input
 
 void IDLmsg(const char *fmt, ...)
 {
@@ -16,10 +18,29 @@ void IDLmsg(const char *fmt, ...)
  IDL_Message(IDL_M_GENERIC, IDL_MSG_INFO, arr);
 }
 
-#else
+#endif
 
-void IDLmsg(const char *fmt, ...)
-{}
+#ifdef PyMSG
+#include <Python.h>
+
+// add file "python3.lib" to the linker input
+
+void Pymsg(const char *fmt, ...)
+{
+ char arr[256];
+
+ va_list argptr;
+ va_start(argptr, fmt);
+ vsprintf_s(arr, 256, fmt, argptr);
+ va_end(argptr);
+
+ PyGILState_STATE gstate;
+ gstate = PyGILState_Ensure();
+
+ PySys_WriteStdout("%s\n", arr);
+
+ PyGILState_Release(gstate);
+}
 
 #endif
 

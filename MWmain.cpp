@@ -17,44 +17,43 @@ int FindLocalJK(double *nu, int *Lparms, double *Rparms, double *Parms,
  int res=0;
 
  int EM_flag=int(Parms[i_EMflag]);
+ int DFtypeGlobalFlag=Lparms[i_arrKeyG];
+ int DFtypeLocalFlag=int(Parms[i_arrKeyL]);
  double kappa=dNaN;
 
  int Ndf=0;
  DF *df[10];
  
  //initializing the analytical distribution function:
- int k=0;
- int Done=0;
- int OK, empty, kap_on;
-
- while (!Done)
+ if (!(DFtypeGlobalFlag & 2)) if (!(DFtypeLocalFlag & 2))
  {
-  df[Ndf]=new Std_DF(Parms, k, &OK, &empty, &kap_on, &Done);
-  if (!OK) 
-  {
-   IDLmsg("Invalid analytical distribution function parameters!");
-   res=1;
-  }
+  int k=0;
+  int Done=0;
+  int OK, empty, kap_on;
 
-  if (OK && !empty) 
+  while (!Done)
   {
-   Ndf++;
-   if (kap_on) kappa=Parms[i_epskappa];
+   df[Ndf]=new Std_DF(Parms, k, &OK, &empty, &kap_on, &Done);
+   if (!OK) res=1;
+
+   if (OK && !empty) 
+   {
+    Ndf++;
+    if (kap_on) kappa=Parms[i_epskappa];
+   }
+   else delete df[Ndf];
+   k++;
   }
-  else delete df[Ndf];
-  k++;
  }
 
  //initializing the array distribution function
- if (!Lparms[i_arrKeyG]) if (!Parms[i_arrKeyL])
+ if (!(DFtypeGlobalFlag & 1)) if (!(DFtypeLocalFlag & 1))
  {
+  int OK, empty;
+
   df[Ndf]=new Arr_DF(Lparms, E_arr, mu_arr, f_arr, &OK, &empty);
   
-  if (!OK)
-  {
-   IDLmsg("Invalid numerical distribution function parameters!");
-   res=2;
-  }
+  if (!OK) res=2;
 
   if (OK && !empty) Ndf++;
   else delete df[Ndf];
@@ -134,6 +133,8 @@ void RadiationTransfer(double nu, int Nz, double *dz, double *ne, double *B, dou
 {
  for (int i=0; i<Nz; i++)
  {
+  //LOGout("%d %e %e %e %e %e", i, nu, jX[i], jO[i], kX[i], kO[i]); //#####
+
   double tau=-kO[i]*dz[i];
   double eO=(tau<700) ? exp(tau) : 0.0; 
   double dIO=(kO[i]==0.0 || tau>700) ? 0.0 : jO[i]/kO[i]*((1.0-eO) ? 1.0-eO : -tau);
@@ -223,11 +224,7 @@ int MW_Transfer(int *Lparms, double *Rparms, double *Parms, double *E_arr, doubl
 	              jX[i], jO[i], kX[i], kO[i], ne_total+i);
  }
 
- if (err)
- {
-  IDLmsg("MW_Transfer error: gyrosynchrotron calculation error.");
-  res=err;
- }
+ if (err) res=err;
  else
  {
   double Sang=Rparms[i_S]/(sqr(AU)*sfu);

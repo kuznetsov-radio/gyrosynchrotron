@@ -18,11 +18,7 @@ extern "C" double GET_MW_main(int argc, void **argv)
 {
  int res=0;
 
- if (argc<7)
- {
-  IDLmsg("GET_MW error: incorrect number of parameters in the function call.");
-  res=-1;
- }
+ if (argc<7) res=-1;
  else
  {
   int *Lparms=(int*)argv[0];
@@ -47,11 +43,7 @@ extern "C" double GET_MW(int argc, void **argv)
 {
  int res=0;
 
- if (argc<7)
- {
-  IDLmsg("GET_MW error: incorrect number of parameters in the function call.");
-  res=-1;
- }
+ if (argc<7) res=-1;
  else
  {
   int *Lparms=(int*)argv[0];
@@ -98,11 +90,7 @@ extern "C" double GET_MW_SLICE(int argc, void **argv)
 {
  int res=0;
 
- if (argc<7)
- {
-  IDLmsg("GET_MW_SLICE error: incorrect number of parameters in the function call.");
-  res=-1;
- }
+ if (argc<7) res=-1;
  else
  {
   int *Lparms_M=(int*)argv[0];
