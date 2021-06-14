@@ -232,10 +232,11 @@ Arr_DF :: Arr_DF(int *Lparms, double *E, double *mu, double *f, int *OK, int *em
 
 	  if (*OK && !(*empty))
 	  {
-	   if (!LQ_on) 
+	   if (!LQ_on)
+	   {
 		if (iso_on) S1=new Spline(NE, E_arr, f_avg);
 	    else S2=new Spline2D(NE, Nmu, E_arr, mu_arr, f_arr);
-
+       }
 	   EPS_mu0=1e-3;
 
 	   if (!iso_on)

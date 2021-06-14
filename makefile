@@ -14,6 +14,8 @@ GS.o		:	GS.cpp Arr_DF.h Coulomb.h ExtMath.h FF.h GS.h IDLinterface.h Messages.h 
 			g++ -c -std=c++11 -O3 -fPIC -D LINUX GS.cpp
 IDLinterface.o	:	IDLinterface.cpp Arr_DF.h Coulomb.h ExtMath.h FF.h GS.h IDLinterface.h Messages.h MWmain.h Plasma.h Std_DF.h Zeta.h
 			g++ -c -std=c++11 -O3 -fPIC -D LINUX IDLinterface.cpp
+Pyinterface.o	:	Pyinterface.cpp Arr_DF.h Coulomb.h ExtMath.h FF.h GS.h IDLinterface.h Messages.h MWmain.h Plasma.h Std_DF.h Zeta.h
+			g++ -c -std=c++11 -O3 -fPIC -D LINUX Pyinterface.cpp
 Messages.o	:	Messages.cpp
 			g++ -c -std=c++11 -O3 -fPIC -D LINUX Messages.cpp
 MWmain.o	:	MWmain.cpp Arr_DF.h Coulomb.h ExtMath.h FF.h GS.h IDLinterface.h Messages.h MWmain.h Plasma.h Std_DF.h Zeta.h
