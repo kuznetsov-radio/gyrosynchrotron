@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import GScodes # initialization library - located either in the current directory or in the system path
 
-libname='./MWTransferArr64.dll' # name of the executable library - located where Python can find it
+libname='../Binaries/MWTransferArr.so' # name of the executable library - located where Python can find it
 
 GET_MW=GScodes.initGET_MW(libname) # load the library
 
