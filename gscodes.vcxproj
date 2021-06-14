@@ -130,7 +130,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>
       </SDLCheck>
-      <AdditionalIncludeDirectories>C:\Program Files\Exelis\IDL82\external\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files\Exelis\IDL82\external\include;C:\Users\Alexey\AppData\Local\Programs\Python\Python39\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
@@ -139,14 +139,15 @@
       <StructMemberAlignment>Default</StructMemberAlignment>
       <BufferSecurityCheck>false</BufferSecurityCheck>
       <FloatingPointModel>Fast</FloatingPointModel>
-      <DisableSpecificWarnings>6011;6308;6385;6386;6387;28182</DisableSpecificWarnings>
+      <DisableSpecificWarnings>6011;6308;6385;6386;6387;28182;26812</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Program Files\Exelis\IDL82\bin\bin.x86_64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>idl.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Program Files\Exelis\IDL82\bin\bin.x86_64;C:\Users\Alexey\AppData\Local\Programs\Python\Python39\libs;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -161,6 +162,7 @@
     <ClCompile Include="Messages.cpp" />
     <ClCompile Include="MWmain.cpp" />
     <ClCompile Include="Plasma.cpp" />
+    <ClCompile Include="PythonInterface.cpp" />
     <ClCompile Include="Std_DF.cpp" />
     <ClCompile Include="Zeta.cpp" />
   </ItemGroup>

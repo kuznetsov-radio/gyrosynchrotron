@@ -71,10 +71,10 @@ pro Example_Array_MultiThreads
   ;electron distribution function is the same for all voxels within a LOS, but varies from LOS to LOS
  endfor 
  
- ;calculating the emission for analytical distribution (array -> on)
+ ;calculating the emission for array distribution (array -> on)
  RL_M=dblarr(7, Nf, Npix)
  
- res=call_external(libname, 'GET_MW_SLICE', Lparms_M, Rparms_M, Parms_M, E_arr, mu_arr, f_arr_M, RL_M, /unload)
+ res=call_external(libname, 'GET_MW_SLICE', Lparms_M, Rparms_M, Parms_M, E_arr, mu_arr, f_arr_M, RL_M)
  
  ;--------------------------------------------
  ;plotting the results
