@@ -130,7 +130,7 @@ PLWdf :: PLWdf(double *Parms, int *OK, int *empty)
  E_x[1]=E2;
  logscale[0]=1;
 
- *OK=finite(A)!=0 && A>=0.0 && E2>E1;
+ *OK=finite(A)!=0 && (PosDef ? A>=0.0 : 1) && E2>E1;
  *empty=(nb==0.0);
 }
 
@@ -190,7 +190,9 @@ DPLdf :: DPLdf(double *Parms, int *OK, int *empty)
  logscale[0]=1;
  logscale[1]=1;
 
- *OK=finite(A1)!=0 && A1>=0.0 && finite(A2)!=0 && A2>=0.0 && E2>Ebr && Ebr>E1;
+ *OK=finite(A1)!=0 && (PosDef ? A1>=0.0 : 1) && 
+	 finite(A2)!=0 && (PosDef ? A2>=0.0 : 1) && 
+	 E2>Ebr && Ebr>E1;
  *empty=(nb==0.0);
 }
 
@@ -325,7 +327,7 @@ PLPdf :: PLPdf(double *Parms, int *OK, int *empty)
  E_x[1]=E2;
  logscale[0]=1;
 
- *OK=finite(A)!=0 && A>=0.0 && E2>E1;
+ *OK=finite(A)!=0 && (PosDef ? A>=0.0 : 1) && E2>E1;
  *empty=(nb==0.0);
 }
 
@@ -384,7 +386,7 @@ PLGdf :: PLGdf(double *Parms, int *OK, int *empty)
  E_x[1]=E2;
  logscale[0]=1;
 
- *OK=finite(A)!=0 && A>=0.0 && E2>E1;
+ *OK=finite(A)!=0 && (PosDef ? A>=0.0 : 1) && E2>E1;
  *empty=(nb==0.0);
 }
 

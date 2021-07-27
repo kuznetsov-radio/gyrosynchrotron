@@ -130,7 +130,7 @@ double Arr_DF :: IntegratedF()
  return res;
 }
 
-Arr_DF :: Arr_DF(int *Lparms, double *E, double *mu, double *f, int *OK, int *empty) //###
+Arr_DF :: Arr_DF(int *Lparms, double *E, double *mu, double *f, int *OK, int *empty)
 {
  E_arr=mu_arr=f_avg=0;
  f_arr=0;
@@ -227,7 +227,7 @@ Arr_DF :: Arr_DF(int *Lparms, double *E, double *mu, double *f, int *OK, int *em
 	 {
 	  nb=IntegratedF();
 	  
-	  if (nb<0 || !finite(nb)) *OK=0;
+	  if (!finite(nb) || (PosDef ? nb<0.0 : 0)) *OK=0;
 	  *empty=(nb==0);
 
 	  if (*OK && !(*empty))

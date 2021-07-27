@@ -19,3 +19,5 @@ class DF
  }
  virtual ~DF() {};
 };
+
+#define PosDef 1 // whether to require n_b > 0 or not
