@@ -1,6 +1,6 @@
 #pragma once
 
-#define RpSize 5
+#define RpSize 6
 #define InSize 24
 #define OutSize 7
 
@@ -22,6 +22,7 @@
 #define i_dnu 2
 #define i_nuCr 3
 #define i_nuWH 4
+#define i_dSun 5
 
 #define i_dz 0
 #define i_T0 1

@@ -67,7 +67,7 @@ int FindLocalJK(double *nu, int *Lparms, double *Rparms, double *Parms,
   for (int i=0; i<Ndf; i++) nb+=df[i]->nb;
 
   *ne_total=Parms[i_n0]+nb;
-
+  
   double nu_p=e*sqrt(*ne_total/me/M_PI); 
   double nu_B=e*Parms[i_B]/me/c/(2.0*M_PI); 
   double theta=Parms[i_theta]*M_PI/180;
@@ -133,8 +133,6 @@ void RadiationTransfer(double nu, int Nz, double *dz, double *ne, double *B, dou
 {
  for (int i=0; i<Nz; i++)
  {
-  //LOGout("%d %e %e %e %e %e", i, nu, jX[i], jO[i], kX[i], kO[i]); //#####
-
   double tau=-kO[i]*dz[i];
   double eO=(tau<700) ? exp(tau) : 0.0; 
   double dIO=(kO[i]==0.0 || tau>700) ? 0.0 : jO[i]/kO[i]*((1.0-eO) ? 1.0-eO : -tau);
@@ -227,7 +225,7 @@ int MW_Transfer(int *Lparms, double *Rparms, double *Parms, double *E_arr, doubl
  if (err) res=err;
  else
  {
-  double Sang=Rparms[i_S]/(sqr(AU)*sfu);
+  double Sang=Rparms[i_S]/(sqr(Rparms[i_dSun]*AU)*sfu);
 
   double Lw, Rw, Ls, Rs, Le, Re;
 
