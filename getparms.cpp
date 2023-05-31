@@ -43,6 +43,12 @@ const char* arr2[]={
 
 #define N2 5
 
+const char *arr2d[]={
+ "   distance;       1   ;AU;      user;            Distance from the source"
+};
+
+#define N2d 1
+
 const char* arr3[]={
  "         dR;   1E+09   ;cm;      data;                  Source/voxel depth",
  "        T_0;   1E+06   ;K;       data;                  Plasma temperature",
@@ -72,9 +78,9 @@ const char* arr3[]={
 
 #define N3 24
 
-void WriteParms(const char **arr, const char *fname, int N)
+void WriteParms(const char **arr, const char *fname, int N, int add)
 {
- FILE *F=fopen(fname, "w");
+ FILE *F=fopen(fname, add ? "a" : "w");
  if (F)
  {
   for (int i=0; i<N; i++) fprintf(F, "%s\n", arr[i]);
@@ -88,9 +94,9 @@ extern "C" __declspec(dllexport) float GET_PARMS(int argc, void **argv)
 extern "C" float GET_PARMS(int argc, void **argv)
 #endif
 {
- WriteParms(arr1, "Long_input.txt",  N1);
- WriteParms(arr2, "Real_input.txt",  N2);
- WriteParms(arr3, "Parms_input.txt", N3);
+ WriteParms(arr1, "Long_input.txt",  N1, 0);
+ WriteParms(arr2, "Real_input.txt",  N2, 0);
+ WriteParms(arr3, "Parms_input.txt", N3, 0);
  return 0;
 }
 
@@ -100,8 +106,34 @@ extern "C" __declspec(dllexport) float GET_PARMS_SLICE(int argc, void **argv)
 extern "C" float GET_PARMS_SLICE(int argc, void **argv)
 #endif
 {
- WriteParms(arr1s, "Long_input.txt",  N1s);
- WriteParms(arr2,  "Real_input.txt",  N2);
- WriteParms(arr3,  "Parms_input.txt", N3);
+ WriteParms(arr1s, "Long_input.txt",  N1s, 0);
+ WriteParms(arr2,  "Real_input.txt",  N2, 0);
+ WriteParms(arr3,  "Parms_input.txt", N3, 0);
+ return 0;
+}
+
+#ifndef LINUX
+extern "C" __declspec(dllexport) float GET_PARMS1(int argc, void **argv)
+#else
+extern "C" float GET_PARMS1(int argc, void **argv)
+#endif
+{
+ WriteParms(arr1, "Long_input.txt",  N1, 0);
+ WriteParms(arr2, "Real_input.txt",  N2, 0);
+ WriteParms(arr2d, "Real_input.txt",  N2d, 1);
+ WriteParms(arr3, "Parms_input.txt", N3, 0);
+ return 0;
+}
+
+#ifndef LINUX
+extern "C" __declspec(dllexport) float GET_PARMS1_SLICE(int argc, void **argv)
+#else
+extern "C" float GET_PARMS1_SLICE(int argc, void **argv)
+#endif
+{
+ WriteParms(arr1s, "Long_input.txt",  N1s, 0);
+ WriteParms(arr2,  "Real_input.txt",  N2, 0);
+ WriteParms(arr2d, "Real_input.txt",  N2d, 1);
+ WriteParms(arr3,  "Parms_input.txt", N3, 0);
  return 0;
 }
