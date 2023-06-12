@@ -2,7 +2,7 @@ Fast codes for computing gyrosynchrotron radio emission; analytical and numerica
 
 Alexey Kuznetsov, July 2021.
 
-The codes are implemented as executable libraries (DLL or SO) callable from IDL or Python. See the files CallingConventions.pdf, AnalyticalDistributions.pdf, and Diagram.pdf for more details and calling conventions, and the folder Examples for the usage examples.
+The codes are implemented as executable libraries (DLL or SO) callable from IDL or Python. See the files CallingConventions.pdf, AnalyticalDistributions.pdf, and Diagram.pdf in the "doc" folder for more details and calling conventions, and the folder "examples" for the usage examples.
 
 Compilation instructions:
 
