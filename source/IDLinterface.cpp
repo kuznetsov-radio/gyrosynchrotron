@@ -6,6 +6,7 @@
 #include "Messages.h"
 #ifndef LINUX
 #include <ppl.h>
+#include <concrtrm.h>
 #else
 #include <omp.h>
 #endif
@@ -224,5 +225,41 @@ extern "C" double GET_MW_SLICE(int argc, void** argv)
   free(Rparms_M);
 
   return res;
+ }
+}
+
+#ifndef LINUX
+extern "C" __declspec(dllexport) int GET_MW_SLICE_M(int argc, void** argv)
+#else
+extern "C" double GET_MW_SLICE_M(int argc, void** argv)
+#endif
+{
+ if (argc<7) return -1;
+ else
+ {
+  int *Lparms_M=(int*)argv[0];
+  int Nthreads=Lparms_M[12];
+
+  #ifndef LINUX
+  int NtMax=concurrency::GetProcessorCount();
+  #else
+  int NtMax=omp_get_max_threads();
+  #endif
+
+  if (Nthreads>NtMax) Nthreads=NtMax;
+
+  if (Nthreads>0)
+  {
+   #ifndef LINUX
+   if (concurrency::CurrentScheduler::Id()!=-1) concurrency::CurrentScheduler::Detach();
+   concurrency::SchedulerPolicy policy;
+   policy.SetConcurrencyLimits(Nthreads, Nthreads);
+   concurrency::CurrentScheduler::Create(policy);
+   #else
+   omp_set_num_threads(Nthreads);
+   #endif
+  }
+
+  return GET_MW_SLICE(7, argv);
  }
 }
