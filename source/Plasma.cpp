@@ -20,6 +20,13 @@ EmWave :: EmWave(double _nu, double _theta, int _sigma, double _nu_p, double _nu
 
   ct=cos(theta);
   st=sin(theta);
+
+  if (st<0)
+  {
+   st=-st;
+   ct=-ct;
+  }
+
   if (fabs(ct)<cst_min)
   {
    ct=cst_min*sign(ct);
