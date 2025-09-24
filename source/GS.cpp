@@ -6,6 +6,7 @@
 #include "Plasma.h"
 #include "DF.h"
 #include "GS.h"
+#include "Messages.h"
 
 typedef struct
 {

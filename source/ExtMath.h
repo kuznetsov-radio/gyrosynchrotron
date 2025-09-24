@@ -36,7 +36,7 @@ inline double sign(double x)
 #define finite isfinite
 #endif
 
-#define dNaN (double(HUGE_VAL))
+#define dNaN (double(NAN))
 #define JMAX 20
 #define MAXIT 20
 #define BrentMAXIT 100

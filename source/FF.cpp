@@ -4,6 +4,7 @@
 #include "Plasma.h"
 #include "Coulomb.h"
 #include "Zeta.h"
+#include "Messages.h"
 
 inline double CoulombOld(double T0, double nu)
 {
