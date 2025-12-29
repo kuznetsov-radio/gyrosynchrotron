@@ -58,6 +58,6 @@ class Std_DF : public DF
  void FE(double E, double mu, 
 	     double *f, double *df_dE, double *df_dmu, 
 		 double *g1, double *g2);
- Std_DF(double *Parms, int k, int *OK, int *empty, int *kap_on, int *Done);
+ Std_DF(int *Lparms, double *Parms, int k, int *OK, int *empty, int *kap_on, int *Done);
  ~Std_DF();
 };

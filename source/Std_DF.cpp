@@ -679,7 +679,7 @@ void Std_DF :: FE(double E, double mu,
  }
 }
 
-Std_DF :: Std_DF(double *Parms, int k, int *OK, int *empty, int *kap_on, int *Done)
+Std_DF :: Std_DF(int *Lparms, double *Parms, int k, int *OK, int *empty, int *kap_on, int *Done)
 {
  F1=0;
  F2=0;
@@ -688,6 +688,13 @@ Std_DF :: Std_DF(double *Parms, int k, int *OK, int *empty, int *kap_on, int *Do
  int mu_id=(int)Parms[i_muId];
 
  *kap_on=0;
+
+ if (Lparms[i_PKkey]==1) mu_id=ISO;
+ if (Lparms[i_PKkey]==2) 
+ {
+  mu_id=ISO;
+  PK_on=1;
+ }
 
  switch (E_id)
  {

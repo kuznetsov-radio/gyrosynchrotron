@@ -33,7 +33,7 @@ int FindLocalJK(double *nu, int *Lparms, double *Rparms, double *Parms,
 
   while (!Done)
   {
-   df[Ndf]=new Std_DF(Parms, k, &OK, &empty, &kap_on, &Done);
+   df[Ndf]=new Std_DF(Lparms, Parms, k, &OK, &empty, &kap_on, &Done);
    if (!OK) res=1;
 
    if (OK && !empty) 
