@@ -34,10 +34,7 @@ CXXFLAGS = $(COMMON_COMPILE) -D LINUX -fopenmp
 LINK_FLAGS = -shared
 LDLIBS = -fopenmp
 else ifeq ($(OS),Windows_NT)
-ONAME = $(BINDIR)/MWTransferArr64.dll
-CXXFLAGS = $(COMMON_COMPILE) -fopenmp
-LINK_FLAGS = -shared
-LDLIBS = -fopenmp
+$(error Windows builds use gscodes.vcxproj; this makefile supports Darwin and Linux only)
 else
 ONAME = $(BINDIR)/MWTransferArr.so
 CXXFLAGS = $(COMMON_COMPILE) -D LINUX -fopenmp
