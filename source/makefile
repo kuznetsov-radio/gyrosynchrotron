@@ -26,26 +26,30 @@ else
 ONAME = $(BINDIR)/MWTransferArr_x86_64.so
 endif
 CXXFLAGS = $(COMMON_COMPILE) -D LINUX -Xpreprocessor -fopenmp -I$(LIBOMP)/include
-LDFLAGS = -shared -L$(LIBOMP)/lib -lomp -Wl,-rpath,$(LIBOMP)/lib
+LINK_FLAGS = -shared
+LDLIBS = -L$(LIBOMP)/lib -lomp -Wl,-rpath,$(LIBOMP)/lib
 else ifeq ($(UNAME_S),Linux)
 ONAME = $(BINDIR)/MWTransferArr.so
 CXXFLAGS = $(COMMON_COMPILE) -D LINUX -fopenmp
-LDFLAGS = -shared -fopenmp
+LINK_FLAGS = -shared
+LDLIBS = -fopenmp
 else ifeq ($(OS),Windows_NT)
 ONAME = $(BINDIR)/MWTransferArr64.dll
 CXXFLAGS = $(COMMON_COMPILE) -fopenmp
-LDFLAGS = -shared -fopenmp
+LINK_FLAGS = -shared
+LDLIBS = -fopenmp
 else
 ONAME = $(BINDIR)/MWTransferArr.so
 CXXFLAGS = $(COMMON_COMPILE) -D LINUX -fopenmp
-LDFLAGS = -shared -fopenmp
+LINK_FLAGS = -shared
+LDLIBS = -fopenmp
 endif
 
 OBJS = Arr_DF.o Coulomb.o ExtMath.o FF.o getparms.o GS.o IDLinterface.o \
        PythonInterface.o Messages.o Plasma.o MWmain.o Std_DF.o Zeta.o
 
 $(ONAME): $(OBJS)
-	$(CXX) $(LDFLAGS) -o $(ONAME) $(OBJS)
+	$(CXX) $(LINK_FLAGS) -o $(ONAME) $(OBJS) $(LDLIBS)
 
 Arr_DF.o: Arr_DF.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) Arr_DF.cpp
