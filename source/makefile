@@ -7,7 +7,7 @@ BINDIR = ../binaries
 CXX ?= g++
 COMMON_COMPILE = -c -std=c++11 -O3 -fPIC
 
-DEPS = Arr_DF.h Coulomb.h ExtMath.h FF.h GS.h IDLinterface.h Messages.h MWmain.h Plasma.h Std_DF.h Zeta.h
+DEPS = Arr_DF.h Coulomb.h DF.h ExtMath.h FF.h GS.h IDLinterface.h Messages.h MWmain.h Plasma.h Std_DF.h Zeta.h
 
 ifeq ($(UNAME_S),Darwin)
 LIBOMP := $(shell brew --prefix libomp 2>/dev/null)
@@ -42,10 +42,12 @@ LINK_FLAGS = -shared
 LDLIBS = -fopenmp
 endif
 
+.DEFAULT_GOAL := $(ONAME)
+
 OBJS = Arr_DF.o Coulomb.o ExtMath.o FF.o getparms.o GS.o IDLinterface.o \
        PythonInterface.o Messages.o Plasma.o MWmain.o Std_DF.o Zeta.o
 
-$(ONAME): $(OBJS)
+$(ONAME): $(OBJS) | $(BINDIR)
 	$(CXX) $(LINK_FLAGS) -o $(ONAME) $(OBJS) $(LDLIBS)
 
 Arr_DF.o: Arr_DF.cpp $(DEPS)
@@ -75,6 +77,9 @@ Std_DF.o: Std_DF.cpp $(DEPS)
 Zeta.o: Zeta.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) Zeta.cpp
 
+$(BINDIR):
+	mkdir -p $@
+
 .PHONY: install clean MWTransferArr
 
 MWTransferArr: $(ONAME)
@@ -82,4 +87,4 @@ MWTransferArr: $(ONAME)
 install: $(ONAME)
 
 clean:
-	rm -f *.o
+	rm -f *.o $(ONAME)
