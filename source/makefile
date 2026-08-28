@@ -32,7 +32,7 @@ ONAME = $(BINDIR)/MWTransferArr.so
 CXXFLAGS = $(COMMON_COMPILE) -D LINUX -fopenmp
 LDFLAGS = -shared -fopenmp
 else ifeq ($(OS),Windows_NT)
-ONAME = MWTransferArr64.dll
+ONAME = $(BINDIR)/MWTransferArr64.dll
 CXXFLAGS = $(COMMON_COMPILE) -fopenmp
 LDFLAGS = -shared -fopenmp
 else
@@ -44,7 +44,7 @@ endif
 OBJS = Arr_DF.o Coulomb.o ExtMath.o FF.o getparms.o GS.o IDLinterface.o \
        PythonInterface.o Messages.o Plasma.o MWmain.o Std_DF.o Zeta.o
 
-MWTransferArr: $(OBJS)
+$(ONAME): $(OBJS)
 	$(CXX) $(LDFLAGS) -o $(ONAME) $(OBJS)
 
 Arr_DF.o: Arr_DF.cpp $(DEPS)
@@ -74,9 +74,11 @@ Std_DF.o: Std_DF.cpp $(DEPS)
 Zeta.o: Zeta.cpp $(DEPS)
 	$(CXX) $(CXXFLAGS) Zeta.cpp
 
-.PHONY: install clean
+.PHONY: install clean MWTransferArr
 
-install: MWTransferArr
+MWTransferArr: $(ONAME)
+
+install: $(ONAME)
 
 clean:
 	rm -f *.o
